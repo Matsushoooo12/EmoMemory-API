@@ -1,5 +1,5 @@
 class Api::V1::LikesController < ApplicationController
-    before_action :authenticate_api_v1_user!, only: ['create']
+    before_action :authenticate_api_v1_user!, only: [:create, :destroy]
 
     def create
         like = Like.new(post_id: params[:id], user_id: current_api_v1_user.id)
