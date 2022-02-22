@@ -9,7 +9,8 @@ class Api::V1::PostsController < ApplicationController
                 emotion: post.emotion,
                 created_at: post.created_at,
                 updated_at: post.updated_at,
-                user: User.find_by(id: post.user_id)
+                user: User.find_by(id: post.user_id),
+                likes: post.likes.map {|like| {id: like.id, user_id: like.user_id, post_id: like.post_id}}
             }
         end
         render json: posts_array
