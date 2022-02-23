@@ -9,7 +9,7 @@ class Api::V1::PostsController < ApplicationController
                 emotion: post.emotion,
                 created_at: post.created_at,
                 updated_at: post.updated_at,
-                user: User.find_by(id: post.user_id),
+                user: post.user,
                 likes: post.likes.map {|like| {id: like.id, user_id: like.user_id, post_id: like.post_id}}
             }
         end
@@ -18,7 +18,16 @@ class Api::V1::PostsController < ApplicationController
 
     def show
         post = Post.find(params[:id])
-        render json: post
+        post_list = {
+            id: post.id,
+            content: post.content,
+            emotion: post.emotion,
+            created_at: post.created_at,
+            updated_at: post.updated_at,
+            user: post.user,
+            likes: post.likes.map {|like| {id: like.id, user_id: like.user_id, post_id: like.post_id}}
+        }
+        render json: post_list
     end
 
     def create
