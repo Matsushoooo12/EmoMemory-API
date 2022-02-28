@@ -163,12 +163,14 @@ https://github.com/Matsushoooo12/EmoMemory-API-v1
 ### Backend
 
 ```
+$ cd api
 $ rails db:migrate
 ```
 
 ### Frontend
 
 ```
+$ cd frontend
 $ rm -rf node_modules
 $ npm install
 ```
